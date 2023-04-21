@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<style>
+		table,
+		th,
+		td {
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Statement Merchant Summary</h1>
+	{{if gt (len .Summaries) 0}}<table>
+		<tr>
+			<th>Card Type</th>
+			<th>Number Of Items</th>
+			<th>Credit Items</th>
+			<th>Credit Charges</th>
+			<th>Return Items</th>
+			<th>Return Charges</th>
+			<th>Net Charges</th>
+		</tr>
+		{{ with .Summaries }}
+		{{range . }}
+		<tr>
+			<td>{{ .CardType }}</td>
+			<td>{{ .NumberOfItems }}</td>
+			<td>{{ .CreditItems }}</td>
+			<td>{{ .CreditCharges }}</td>
+			<td>{{ .ReturnItems }}</td>
+			<td>{{ .ReturnCharges }}</td>
+			<td>{{ .NetCharges }}</td>
+		</tr>
+		{{ end }}
+		{{ end }}
+	</table>
+	{{ else }}
+	<div><strong>no summaries to show</strong></div>
+	{{ end }}
+</body>
+
+</html>

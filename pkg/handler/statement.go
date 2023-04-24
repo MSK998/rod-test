@@ -82,7 +82,7 @@ func SingleStatementHandler(w http.ResponseWriter, r *http.Request) {
 	// Generate a single report
 	// This will block the request while generating
 	// Run times at the moment are about 2-3 sec
-	pdf := rg.GeneratePDF(fmt.Sprintf("temp/%s_statement.pdf", mid), "statement_merchant_summary.html", data)
+	pdf := rg.GeneratePDF(fmt.Sprintf("temp/single/%s_statement.pdf", mid), "statement_merchant_summary.html", data)
 
 	w.Header().Add("Content-Type", "application/pdf")
 	w.Write(pdf)

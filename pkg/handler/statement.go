@@ -48,7 +48,7 @@ func StatementHandler(w http.ResponseWriter, r *http.Request) {
 		// Set the statements running to true
 		statementsRunning = true
 		// Pass off statement generation to a new thread to keep response times fast
-		go StartStatementGeneration()
+		go startStatementGeneration()
 		// Eagerly respond with a 200
 		w.WriteHeader(http.StatusOK)
 	}
@@ -92,7 +92,7 @@ func SingleStatementHandler(w http.ResponseWriter, r *http.Request) {
 // A function that is called to start generating statements.
 // Right now this is just generating several identical pdfs with different names.
 // The real service will probably grab data from the database and generate using that.
-func StartStatementGeneration() {
+func startStatementGeneration() {
 
 	// Parse the templates and return any errors
 	tmpl, err := (template.ParseFiles("template/test.html", "template/statement_merchant_summary.html"))
